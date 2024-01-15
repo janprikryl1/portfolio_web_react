@@ -1,7 +1,9 @@
 import Component from "../components/Component";
 import {useEffect, useState} from "react";
+import {useTranslation} from "react-i18next";
 
 function Projects() {
+    const { t, i18n } = useTranslation();
     const [webs, loadWebs] = useState([]);
     const [apps, loadApps] = useState([]);
     const [others, loadOthers] = useState([]);
@@ -28,29 +30,28 @@ function Projects() {
     return (
         <div>
             <div className="container" id="webs">
-                <h2>Weby</h2>
+                <h2>{t("Webs")}</h2>
                 <div className="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5" style={{marginTop: '-15px', marginLeft: '0.1%'}}>
                     {webs.map((web) => (
-                       <Component title={web.title} url={web.url} purpose={web.purpose} id={web.id}/>
-
+                       <Component title={i18n.language === 'cs'?web.title:web.title_en} url={web.url} purpose={i18n.language === 'cs'?web.purpose:web.purpose_en} id={web.id}/>
                         ))}
                 </div>
                 <hr className="featurette-divider" style={{width: '100%'}}/>
             </div>
             <div className="container" id="apps">
-                <h2>Aplikace</h2>
+                <h2>{t("Applications")}</h2>
                 <div className="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5" style={{marginTop: '-15px', marginLeft: '0.1%'}}>
                     {apps.map((app) => (
-                        <Component title={app.title} url={app.url} description={app.description} id={app.id}/>
+                        <Component title={i18n.language === 'cs'?app.title:app.title_en} url={app.url} purpose={i18n.language === 'cs'?app.purpose:app.purpose_en} id={app.id}/>
                     ))}
                 </div>
                 <hr className="featurette-divider" style={{width: '100%'}}/>
             </div>
             <div className="container" id="others">
-                <h2>Ostatní</h2>
+                <h2>{t("Others")}</h2>
                 <div className="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5" style={{marginTop: '-15px', marginLeft: '0.1%'}}>
                     {others.map((other) => (
-                        <Component title={other.title} url={other.url} description={other.description} id={other.id}/>
+                        <Component title={i18n.language === 'cs'?other.title:other.title_en} url={other.url} purpose={i18n.language === 'cs'?other.purpose:other.purpose_en} id={other.id}/>
                     ))}
                 </div>
                 <hr className="featurette-divider" style={{width: '100%'}}/>

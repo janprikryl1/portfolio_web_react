@@ -15,6 +15,8 @@ import ProjectDetail from "./components/ProjectDetail";
 
 import { createGlobalStyle } from 'styled-components';
 
+import "./i18n";
+
 const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
     @media (prefers-color-scheme: dark) {

@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
+import LanguageSelector from "./LanguageSelector";
+import { useTranslation } from "react-i18next";
 
 function Header() {
+  const { t } = useTranslation();
   let page = window.location.pathname;
   page = page.split('/');
   const [currentPage, setCurrentPage] = useState(page[1]);
@@ -16,10 +19,13 @@ function Header() {
             <Link to="/" className="nav-link" onClick={() => setCurrentPage('')}>Portfolio</Link>
           </li>
           <li className="nav-item" style={{ borderBottom: currentPage=='projects'?'2px solid #0073ff':'none', paddingBottom: currentPage=='projects'?'1px':'none' }}>
-            <Link to="projects" className="nav-link" onClick={() => setCurrentPage('projects')} >Projekty</Link>
+            <Link to="projects" className="nav-link" onClick={() => setCurrentPage('projects')} >{t("Projects")}</Link>
           </li>
           <li className="nav-item" style={{ borderBottom: currentPage=='contact'?'2px solid #0073ff':'none', paddingBottom: currentPage=='contact'?'1px':'none' }}>
-            <Link to="contact" className="nav-link" onClick={() => setCurrentPage('contact')} >Kontakt</Link>
+            <Link to="contact" className="nav-link" onClick={() => setCurrentPage('contact')} >{t("Contact")}</Link>
+          </li>
+          <li className="nav-item">
+            <LanguageSelector />
           </li>
         </ul>
       </header>

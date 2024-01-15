@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import ExpandIcon from "../../static/images/expand-arrow-icon.svg";
+import {useTranslation} from "react-i18next";
 
 function Skills() {
+  const { t } = useTranslation();
   const [showSkills, setShowSkills] = useState(false);
 
   const toggleSkills = () => {
@@ -12,7 +14,7 @@ function Skills() {
     <div>
       <div className="col-sm-16" id="skills" style={{ marginTop: '50px', marginBottom: '20px' }}>
         <h1 style={{ color: '#0073ff' }}>
-          Dovednosti{" "}
+          {t("Skills")}
           <img
             id="skills_arrow"
             className="arrow"
@@ -24,7 +26,7 @@ function Skills() {
           />
         </h1>
         <div id="skills_content" className={`collapse ${showSkills ? 'show' : ''}`}>
-          <p>Jazyky, knihovny, technologie, Ostatní</p>
+          <p>{t("Languages")}, {t("libraries")}, {t("technologies")}, {t("Others")}</p>
           <div className="container">
             <div className="row" style={{ paddingBottom: '50px' }}>
             <div className="col-sm-2">
@@ -33,16 +35,16 @@ function Skills() {
                   Python
                 </a>
                 <a className="list-group-item list-group-item-action" data-toggle="list" href="#list-web" role="tab" aria-controls="profile">
-                  Weby
+                  {t("Webs")}
                 </a>
                 <a className="list-group-item list-group-item-action" data-toggle="list" href="#list-android" role="tab" aria-controls="messages">
                   Android
                 </a>
                 <a className="list-group-item list-group-item-action" data-toggle="list" href="#list-mcu" role="tab" aria-controls="messages">
-                  Elektro
+                  {t("Electro")}
                 </a>
                 <a className="list-group-item list-group-item-action" data-toggle="list" href="#list-others" role="tab" aria-controls="settings">
-                  Ostatní
+                  {t("Others")}
                 </a>
               </div>
             </div>
@@ -60,25 +62,26 @@ function Skills() {
                 </div>
                 <div className="tab-pane fade" id="list-web" role="tabpanel" aria-labelledby="list-profile-list">
                   <ul>
+                    <li>React</li>
                     <li>Python (Django, flask)</li>
-                    <li>Javascript (jQuery)</li>
+                    <li>Javascript, jQuery</li>
                     <li>CSS (Bootstrap)</li>
-                    <li>SQL databáze</li>
+                    <li>SQL {t("database")}</li>
                   </ul>
                 </div>
                 <div className="tab-pane fade" id="list-android" role="tabpanel" aria-labelledby="list-messages-list">
-                  Vývoj aplikací (nejvíc Java).
+                  <p>{t("Application development")} ({t("most")} Java)</p>
                 </div>
                 <div className="tab-pane fade" id="list-mcu" role="tabpanel" aria-labelledby="list-messages-list">
-                  Raspberry PI, Arduino, STM, ...
+                  <p>Raspberry PI, Arduino, STM, ...</p>
                 </div>
                 <div className="tab-pane fade" id="list-others" role="tabpanel" aria-labelledby="list-settings-list">
                   <ul>
                     <li>Microsoft Office</li>
                     <li>Windows, Linux, Mac OS X</li>
                     <li>Git</li>
-                    <li>Úprava obrázků v Gimpu</li>
-                    <li>Úprava, střih videa</li>
+                    <li>{t("Editing images in Gimp")}</li>
+                    <li>{t("Video editing")}</li>
                   </ul>
                 </div>
               </div>

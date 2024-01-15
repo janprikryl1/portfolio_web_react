@@ -3,9 +3,11 @@ import GitHub from "../../static/images/github-mark-white.svg";
 import {useParams} from "react-router-dom";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
+import {useTranslation} from "react-i18next";
 
 function ProjectDetail() {
     const {ProjectId} = useParams();
+    const { t, i18n } = useTranslation();
 
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
@@ -28,10 +30,18 @@ function ProjectDetail() {
                     console.log("Error while loading");
                 }
            }).then((data) => {
-                setName(data.name);
-                setDescription(data.description);
+               if (i18n.language === 'cs') {
+                    setName(data.name);
+                    setDescription(data.description);
+                    setPurpose(data.purpose);
+               } else {
+                    setName(data.name_en);
+                    setDescription(data.description_en);
+                    setPurpose(data.purpose_en);
+               }
+
                 setRepository(data.repository);
-                setPurpose(data.purpose);
+
                 setScreenshots(data.screenshots);
            }).catch((response) => {
                console.log("error getting data");
@@ -56,7 +66,7 @@ function ProjectDetail() {
                 </div>
                 <div className="col-sm-8" id="github_repository" style={{marginTop: '10px'}}>
                     <a href={repository} style={{textDecoration: 'none'}}><img
-                        src={GitHub} id="github_icon"/> GitHub repozitář</a>
+                        src={GitHub} id="github_icon" width={45}/> GitHub {t("Repository")}</a>
                 </div>
             </div>
         </div>

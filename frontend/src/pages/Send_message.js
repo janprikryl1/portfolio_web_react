@@ -3,9 +3,10 @@ import Form from 'react-bootstrap/Form'
 import {toast} from "react-toastify";
 import getCookie from "../functions/getCookie";
 import HorizontalIcons from "../components/HorizontalIcons";
+import {useTranslation} from "react-i18next";
 
 function Send_message() {
-
+  const { t } = useTranslation();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
@@ -63,13 +64,13 @@ function Send_message() {
             <HorizontalIcons />
         </div>
         <div className="col-sm-6">
-            <h2>Zanechejte mi vzkaz</h2>
+            <h2>{t("Send me message")}</h2>
             <Form onSubmit={send_data}>
               <Form.Group className="mb-3" controlId="formName">
-                <Form.Label>Moje jméno</Form.Label>
+                <Form.Label>{t("Name")}</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Jméno"
+                  placeholder={t("Name")}
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
@@ -86,10 +87,10 @@ function Send_message() {
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formSubject">
-                <Form.Label>Předmět</Form.Label>
+                <Form.Label>{t("Subject")}</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Předmět"
+                  placeholder={t("Subject")}
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
                   required
@@ -97,10 +98,10 @@ function Send_message() {
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formMessage">
-                <Form.Label>Zpráva</Form.Label>
+                <Form.Label>{t("Message")}</Form.Label>
                 <Form.Control
                   as="textarea"
-                  placeholder="Zpráva"
+                  placeholder={t("Message")}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   required
