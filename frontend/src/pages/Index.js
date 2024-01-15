@@ -1,8 +1,45 @@
 import React from "react";
+import VerticalIcons from "../components/VerticalIcons";
+import {Link} from "react-router-dom";
+import {Button} from "react-bootstrap";
+import Photo from "../../static/images/img2.png"
+import ExpandIcon from "../../static/images/expand-arrow-icon.svg";
+import Education from "../components/Education";
+import Experiences from "../components/Experiences";
+import Skills from "../components/Skills";
 
 function Index() {
     return (
-        <p>Hlavní stránka</p>
-    )
+        <div>
+            <div className="container" id="overview" style={{ paddingLeft: '15px' }}>
+                <div className="row" style={{ paddingTop: '5px' }}>
+                    <div className="col-sm-8">
+                        <h1 style={{ color: '#0073ff' }} id="title">Ahoj,</h1>
+                        <h1 id="welcome">Moje jméno je Jan Přikryl</h1>
+                        <Link to="contact" className="nav-link" style={{ marginTop: '5px' }} id="contact"><Button variant='outline-primary'>Napište mi</Button></Link>
+                        <VerticalIcons />
+                    </div>
+                    <div className="col-sm-4">
+                        <img id="photo" src={Photo} style={{ width: '300px', paddingTop: '20px' }} alt="Jan Přikryl" />
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div className="container">
+                <div className="row" style={{ bottom: '0', height: '0px', position: 'absolute', marginTop: '100px' }}>
+                    <div className="col-sm-16" id="about">
+                        <h1>Vítám tě na svém webu,</h1>
+                        <br />
+                        <h3 style={{ paddingRight: '60px' }}>Jsem student, programátor a rád se učím novým věcem.</h3>
+                        <hr className="featurette-divider" />
+                        <Education />
+                        <Experiences />
+                        <Skills />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 }
+
 export default Index;
