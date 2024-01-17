@@ -39,6 +39,7 @@ const GlobalStyle = createGlobalStyle`
         }
         #app, #formMessage {
             background-color: #000;
+          color: white;
         }
         input[type=text], input[type=email], textarea {
             width: 200px;
@@ -71,6 +72,14 @@ const GlobalStyle = createGlobalStyle`
     }
     .rotated:hover {
         transform: rotate(180deg) scale(1.5);
+    }
+    @media (max-width: 767px) {
+      #socials {
+        display: none;
+      }
+      #photo {
+        margin-bottom: 30px;
+      }
     }
 `;
 

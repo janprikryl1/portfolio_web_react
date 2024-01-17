@@ -107,7 +107,7 @@ function Send_message() {
                   required
                 />
               </Form.Group>
-              <Form.Control variant="primary" type="submit"/>
+              <Form.Control variant="primary" type="submit" style={{marginBottom:"30px"}}/>
             </Form>
            </div>
       </div>

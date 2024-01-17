@@ -24,4 +24,15 @@ i18n
     },
   });
 
+/*if (!i18n.language) {
+  i18n.changeLanguage("cs");
+}*/
+if (!i18n.language) {
+  const userLanguage = window.navigator.language.split('-')[0]; // Získá jazyk uživatele ze systému
+  const supportedLanguages = ["cs", "en"]; // Podporované jazyky
+  const defaultLanguage = supportedLanguages.includes(userLanguage) ? userLanguage : "en";
+
+  i18n.changeLanguage(defaultLanguage);
+}
+
 export default i18n;

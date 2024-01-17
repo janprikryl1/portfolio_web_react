@@ -18,7 +18,7 @@ function Index() {
                         <h1 style={{ color: '#0073ff' }} id="title">{t("Hi")},</h1>
                         <h1 id="welcome">{t("My name is")} Jan Přikryl</h1>
                         <Link to="contact" className="nav-link" style={{ marginTop: '5px' }} id="contact"><Button variant='outline-primary'>{t("Text me")}</Button></Link>
-                        <VerticalIcons />
+                        <VerticalIcons/>
                     </div>
                     <div className="col-sm-4">
                         <img id="photo" src={Photo} style={{ width: '300px', paddingTop: '20px' }} alt="Jan Přikryl" />

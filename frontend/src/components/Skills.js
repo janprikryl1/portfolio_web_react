@@ -30,7 +30,7 @@ function Skills() {
           <div className="container">
             <div className="row" style={{ paddingBottom: '50px' }}>
             <div className="col-sm-2">
-              <div className="list-group" id="list-tab" role="tablist">
+              <div className="list-group" id="list-tab" role="tablist" style={{maxWidth:"100px"}}>
                 <a className="list-group-item list-group-item-action active" data-toggle="list" href="#list-python" role="tab" aria-controls="home">
                   Python
                 </a>
@@ -47,6 +47,7 @@ function Skills() {
                   {t("Others")}
                 </a>
               </div>
+              <br />
             </div>
             <div className="col-sm-8" style={{ width: '70%' }}>
               <div className="tab-content" id="nav-tabContent">

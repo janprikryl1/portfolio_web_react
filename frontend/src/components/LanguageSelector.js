@@ -17,11 +17,11 @@ import English from "../../static/images/english.png";
 ];*/
 
 const LanguageSelector = () => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   return (
       <div>
-      <NavDropdown title={t("Language")} id="basic-nav-dropdown">
+      <NavDropdown title={i18n.language === "cs"?<img src={Czech} alt="Čeština"width={20}/>:<img src={English} alt="English" width={20}/>} id="basic-nav-dropdown">
           <NavDropdown.Item key="cs" disabled={i18n.language === "cs"} onClick={() => i18n.changeLanguage("cs")}>
             <img src={Czech} alt="Čeština"width={30}/> Čeština
           </NavDropdown.Item>
