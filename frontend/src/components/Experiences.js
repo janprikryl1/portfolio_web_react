@@ -12,6 +12,15 @@ function Experiences() {
                         <div id="experiences_content" style={{ display: showExperiences?'block':'none' }}>
                             <div className="row">
                                 <div className="col-sm-5">
+                                    <h6 style={{ color: '#0073ff' }}>ITIXO, s.r.o.</h6>
+                                    <ul>
+                                        <li>Frontend developer (React)</li>
+                                    </ul>
+                                </div>
+                                <div className="col-sm-4" style={{ textAlign: 'center' }}>
+                                    <p>2024 - {t("present")}</p>
+                                </div>
+                                <div className="col-sm-5">
                                     <h6 style={{ color: '#0073ff' }}>IT NETWORK</h6>
                                     <ul>
                                         <li>{t("Writing articles")}</li>
@@ -54,6 +63,14 @@ function Experiences() {
                                 </div>
                                 <div className="col-sm-4" style={{ textAlign: 'center' }}>
                                     <p>2018</p>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-sm-5">
+                                    <h6 style={{ color: '#0073ff' }}>{t("Camp counselor")}</h6>
+                                </div>
+                                <div className="col-sm-4" style={{ textAlign: 'center' }}>
+                                    <p>2020, 2021, 2022, 2023</p>
                                 </div>
                             </div>
                         </div>
