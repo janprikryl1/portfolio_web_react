@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { useTranslation } from "react-i18next";
+import Skeleton from 'react-loading-skeleton';
 
 function ProjectDetail() {
   const { ProjectId } = useParams();
@@ -77,12 +78,12 @@ function ProjectDetail() {
   return (
     <div className="container">
       <div className="row">
-        <h1>{name}</h1>
+        <h1>{name || <Skeleton />}</h1>
         <div className="col-sm-8">
-          <p>{renderDescriptionWithLinks(description)}</p>
+          <p>{renderDescriptionWithLinks(description) || <Skeleton />}</p>
         </div>
         <div className="col-sm-8" id="purpose">
-          <p>{purpose}</p>
+          <p>{purpose || <Skeleton />}</p>
         </div>
         <div className="col-sm-8">
           <div className="row" id="images">
