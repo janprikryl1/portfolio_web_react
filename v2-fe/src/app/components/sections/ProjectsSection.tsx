@@ -6,6 +6,7 @@ import { ProjectCard } from "./ProjectCard";
 import { fetchProjects } from "../../services/api";
 import { ApiProject, CategorizedProjects } from "../../types";
 import { SOCIAL_LINKS } from "../../constants";
+import { CollapsibleSection } from "../ui/CollapsibleSection";
 
 export const ProjectsSection: FC = () => {
   const { t } = useTranslation();
@@ -63,123 +64,121 @@ export const ProjectsSection: FC = () => {
 
   const filteredProjects = getFilteredProjects();
 
+  const [showAll, setShowAll] = useState(false);
+  const INITIAL_LIMIT = 6;
+  const visibleProjects = showAll ? filteredProjects : filteredProjects.slice(0, INITIAL_LIMIT);
+
   return (
-    <section id="projekty" className="relative z-10 px-6 lg:px-12 py-12 lg:py-28">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12"
+    <CollapsibleSection
+      id="projekty"
+      badge={t("projects.badge")}
+      title={t("projects.title")}
+      defaultOpen={false}
+    >
+      {/* Category Tabs */}
+      <div className="flex flex-wrap gap-2 p-1.5 bg-card border border-border rounded-xl mb-8 w-fit">
+        <button
+          onClick={() => { setActiveTab("all"); setShowAll(false); }}
+          className={`px-4 py-2 rounded-lg text-xs font-mono transition-all ${
+            activeTab === "all"
+              ? "bg-primary text-primary-foreground shadow-sm"
+              : "text-muted-foreground hover:text-foreground"
+          }`}
         >
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="h-px w-12 bg-primary" />
-              <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-                {t("projects.badge")}
-              </span>
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-              {t("projects.title")}
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-xl">
-              {t("projects.subtitle")}
-            </p>
-          </div>
-
-          {/* Category Tabs */}
-          <div className="flex flex-wrap gap-2 p-1.5 bg-card border border-border rounded-xl">
-            <button
-              onClick={() => setActiveTab("all")}
-              className={`px-4 py-2 rounded-lg text-xs font-mono transition-all ${
-                activeTab === "all"
-                  ? "bg-primary text-primary-foreground shadow-sm"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {t("projects.all")} ({allProjects.length})
-            </button>
-            <button
-              onClick={() => setActiveTab("webs")}
-              className={`px-4 py-2 rounded-lg text-xs font-mono transition-all ${
-                activeTab === "webs"
-                  ? "bg-primary text-primary-foreground shadow-sm"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {t("projects.webs")} ({categorized.webs.length})
-            </button>
-            <button
-              onClick={() => setActiveTab("apps")}
-              className={`px-4 py-2 rounded-lg text-xs font-mono transition-all ${
-                activeTab === "apps"
-                  ? "bg-primary text-primary-foreground shadow-sm"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {t("projects.apps")} ({categorized.apps.length})
-            </button>
-            <button
-              onClick={() => setActiveTab("others")}
-              className={`px-4 py-2 rounded-lg text-xs font-mono transition-all ${
-                activeTab === "others"
-                  ? "bg-primary text-primary-foreground shadow-sm"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {t("projects.others")} ({categorized.others.length})
-            </button>
-          </div>
-        </motion.div>
-
-        {/* Loading State */}
-        {loading && (
-          <div className="flex flex-col items-center justify-center py-20 gap-4 text-muted-foreground font-mono">
-            <Loader2 className="w-8 h-8 animate-spin text-primary" />
-            <p>{t("projects.loading")}</p>
-          </div>
-        )}
-
-        {/* Error State */}
-        {error && !loading && (
-          <div className="flex flex-col items-center justify-center py-16 gap-3 text-destructive font-mono bg-destructive/10 border border-destructive/20 rounded-xl">
-            <AlertCircle className="w-8 h-8" />
-            <p>{t("projects.error")}</p>
-          </div>
-        )}
-
-        {/* Projects Grid */}
-        {!loading && !error && (
-          <>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredProjects.map((project, index) => (
-                <ProjectCard key={`${project.categoryName}-${project.id}`} project={project} index={index} />
-              ))}
-            </div>
-
-            {/* More Projects Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="mt-12 text-center"
-            >
-              <a
-                href={SOCIAL_LINKS.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-3.5 bg-card hover:bg-primary hover:text-primary-foreground border border-border hover:border-primary/40 rounded-xl transition-all font-medium text-base shadow-sm hover:shadow-lg hover:shadow-primary/10 group"
-              >
-                <Github className="w-5 h-5 transition-transform group-hover:scale-110" />
-                <span>{t("projects.moreProjects")}</span>
-                <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary-foreground transition-colors" />
-              </a>
-            </motion.div>
-          </>
-        )}
+          {t("projects.all")} ({allProjects.length})
+        </button>
+        <button
+          onClick={() => { setActiveTab("webs"); setShowAll(false); }}
+          className={`px-4 py-2 rounded-lg text-xs font-mono transition-all ${
+            activeTab === "webs"
+              ? "bg-primary text-primary-foreground shadow-sm"
+              : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          {t("projects.webs")} ({categorized.webs.length})
+        </button>
+        <button
+          onClick={() => { setActiveTab("apps"); setShowAll(false); }}
+          className={`px-4 py-2 rounded-lg text-xs font-mono transition-all ${
+            activeTab === "apps"
+              ? "bg-primary text-primary-foreground shadow-sm"
+              : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          {t("projects.apps")} ({categorized.apps.length})
+        </button>
+        <button
+          onClick={() => { setActiveTab("others"); setShowAll(false); }}
+          className={`px-4 py-2 rounded-lg text-xs font-mono transition-all ${
+            activeTab === "others"
+              ? "bg-primary text-primary-foreground shadow-sm"
+              : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          {t("projects.others")} ({categorized.others.length})
+        </button>
       </div>
-    </section>
+
+      {/* Loading State */}
+      {loading && (
+        <div className="flex flex-col items-center justify-center py-20 gap-4 text-muted-foreground font-mono">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+          <p>{t("projects.loading")}</p>
+        </div>
+      )}
+
+      {/* Error State */}
+      {error && !loading && (
+        <div className="flex flex-col items-center justify-center py-16 gap-3 text-destructive font-mono bg-destructive/10 border border-destructive/20 rounded-xl">
+          <AlertCircle className="w-8 h-8" />
+          <p>{t("projects.error")}</p>
+        </div>
+      )}
+
+      {/* Projects Grid */}
+      {!loading && !error && (
+        <>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {visibleProjects.map((project, index) => (
+              <ProjectCard key={`${project.categoryName}-${project.id}`} project={project} index={index} />
+            ))}
+          </div>
+
+          {/* Show All / Show Less Toggle Button */}
+          {filteredProjects.length > INITIAL_LIMIT && (
+            <div className="mt-8 text-center">
+              <button
+                onClick={() => setShowAll((prev) => !prev)}
+                className="px-6 py-2.5 rounded-xl border border-primary/40 bg-primary/10 hover:bg-primary hover:text-primary-foreground text-primary text-sm font-medium transition-all shadow-sm"
+              >
+                {showAll
+                  ? t("projects.showLess")
+                  : t("projects.showAll", { count: filteredProjects.length })}
+              </button>
+            </div>
+          )}
+
+          {/* More Projects Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="mt-10 text-center"
+          >
+            <a
+              href={SOCIAL_LINKS.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-8 py-3.5 bg-card hover:bg-primary hover:text-primary-foreground border border-border hover:border-primary/40 rounded-xl transition-all font-medium text-base shadow-sm hover:shadow-lg hover:shadow-primary/10 group"
+            >
+              <Github className="w-5 h-5 transition-transform group-hover:scale-110" />
+              <span>{t("projects.moreProjects")}</span>
+              <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary-foreground transition-colors" />
+            </a>
+          </motion.div>
+        </>
+      )}
+    </CollapsibleSection>
   );
 };

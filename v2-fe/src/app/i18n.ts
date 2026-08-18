@@ -50,8 +50,7 @@ const resources = {
       },
       education: {
         badge: "Vzdělání",
-        title: "Vzdělání",
-        subtitle: "Přehled akademického a odborného vzdělání.",
+        title: "Dosažené vzdělání",
         current: "Probíhající",
         vsbSchool: "Vysoká škola báňská - Technická univerzita Ostrava",
         ingDegree: "Inženýr (Ing.)",
@@ -75,7 +74,6 @@ const resources = {
       projects: {
         badge: "Portfolio",
         title: "Vybrané Projekty",
-        subtitle: "Přehled projektů s načítáním z REST API.",
         all: "Vše",
         webs: "Weby",
         apps: "Aplikace",
@@ -88,7 +86,9 @@ const resources = {
         detailLoading: "Načítání detailu projektu...",
         detailError: "Nepodařilo se načíst detaily projektu.",
         screenshots: "Snímky obrazovky",
-        moreProjects: "Další projekty na GitHubu"
+        moreProjects: "Další projekty na GitHubu",
+        showAll: "Zobrazit všech {{count}} projektů",
+        showLess: "Zobrazit méně projektů"
       },
       contact: {
         badge: "Kontakt",
@@ -191,7 +191,6 @@ const resources = {
       projects: {
         badge: "Portfolio",
         title: "Featured Projects",
-        subtitle: "Overview of projects loaded from REST API.",
         all: "All",
         webs: "Websites",
         apps: "Applications",
@@ -204,7 +203,9 @@ const resources = {
         detailLoading: "Loading project details...",
         detailError: "Failed to load project details.",
         screenshots: "Screenshots",
-        moreProjects: "More projects on GitHub"
+        moreProjects: "More projects on GitHub",
+        showAll: "Show all {{count}} projects",
+        showLess: "Show fewer projects"
       },
       contact: {
         badge: "Contact",

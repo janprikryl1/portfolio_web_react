@@ -46,6 +46,10 @@ export const ProjectCard: FC<ProjectCardProps> = ({ project, index }) => {
           <img
             src={project.url}
             alt={title}
+            loading="lazy"
+            decoding="async"
+            width={400}
+            height={225}
             className="max-h-full max-w-full object-contain rounded transition-transform group-hover:scale-105 duration-300"
           />
         ) : (
