@@ -16,7 +16,8 @@ const resources = {
         titleRole: "Frontend Developer",
         titleExp: "s víc než 2,5 lety zkušeností",
         bio: "Vítám tě na svém webu. Jsem student, programátor a rád se učím novým věcem.",
-        viewProjects: "Prohlédnout projekty"
+        viewProjects: "Prohlédnout projekty",
+        more: "Další"
       },
       stats: {
         expLabel: "Let zkušeností",
@@ -62,7 +63,14 @@ const resources = {
       },
       techStack: {
         badge: "Technologie",
-        title: "Technologie & Nástroje"
+        title: "Technologie & Nástroje",
+        more: "A další",
+        categories: {
+          frontend: "Frontend",
+          backend: "Backend",
+          tools: "Nástroje",
+          "hosting & deployment": "Hosting & Deployment"
+        }
       },
       projects: {
         badge: "Portfolio",
@@ -79,7 +87,8 @@ const resources = {
         error: "Nepodařilo se načíst projekty z API.",
         detailLoading: "Načítání detailu projektu...",
         detailError: "Nepodařilo se načíst detaily projektu.",
-        screenshots: "Snímky obrazovky"
+        screenshots: "Snímky obrazovky",
+        moreProjects: "Další projekty na GitHubu"
       },
       contact: {
         badge: "Kontakt",
@@ -123,7 +132,8 @@ const resources = {
         titleRole: "Frontend Developer",
         titleExp: "with over 2.5 years of experience",
         bio: "Welcome to my website. I am a student, programmer, and I love learning new things.",
-        viewProjects: "View Projects"
+        viewProjects: "View Projects",
+        more: "More"
       },
       stats: {
         expLabel: "Years of Experience",
@@ -169,7 +179,14 @@ const resources = {
       },
       techStack: {
         badge: "Technologies",
-        title: "Technologies & Tools"
+        title: "Technologies & Tools",
+        more: "And more",
+        categories: {
+          frontend: "Frontend",
+          backend: "Backend",
+          tools: "Tools",
+          "hosting & deployment": "Hosting & Deployment"
+        }
       },
       projects: {
         badge: "Portfolio",
@@ -186,7 +203,8 @@ const resources = {
         error: "Failed to load projects from API.",
         detailLoading: "Loading project details...",
         detailError: "Failed to load project details.",
-        screenshots: "Screenshots"
+        screenshots: "Screenshots",
+        moreProjects: "More projects on GitHub"
       },
       contact: {
         badge: "Contact",

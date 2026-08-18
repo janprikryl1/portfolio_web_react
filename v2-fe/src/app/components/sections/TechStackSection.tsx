@@ -36,9 +36,9 @@ export const TechStackSection: FC = () => {
               transition={{ delay: categoryIndex * 0.1, duration: 0.6 }}
               className="p-6 bg-card border border-border rounded-xl hover:border-primary/50 transition-all shadow-sm"
             >
-              <h3 className="text-lg font-bold capitalize mb-4 text-primary flex items-center gap-2">
+              <h3 className="text-lg font-bold mb-4 text-primary flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-primary" />
-                {category}
+                {t(`techStack.categories.${category}`, category)}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {items.map((item, itemIndex) => (
@@ -46,7 +46,7 @@ export const TechStackSection: FC = () => {
                     key={itemIndex}
                     className="px-3 py-1.5 bg-background border border-border rounded-lg text-xs font-mono text-foreground/80 hover:border-primary/50 transition-colors"
                   >
-                    {item}
+                    {item === "More" ? t("techStack.more") : item}
                   </span>
                 ))}
               </div>

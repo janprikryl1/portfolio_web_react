@@ -2,8 +2,9 @@ import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "motion/react";
 import { Link } from "react-router";
-import { ExternalLink, Layers } from "lucide-react";
+import { Github, Layers } from "lucide-react";
 import { ApiProject } from "../../types";
+import { SOCIAL_LINKS } from "../../constants";
 
 interface ProjectCardProps {
   project: ApiProject;
@@ -16,6 +17,7 @@ export const ProjectCard: FC<ProjectCardProps> = ({ project, index }) => {
 
   const title = isEn && project.title_en ? project.title_en : project.title;
   const purpose = isEn && project.purpose_en ? project.purpose_en : project.purpose;
+  const githubUrl = project.repository || SOCIAL_LINKS.github;
 
   const getCategoryLabel = (category?: string) => {
     switch (category) {
@@ -73,15 +75,25 @@ export const ProjectCard: FC<ProjectCardProps> = ({ project, index }) => {
           )}
         </div>
 
-        {/* Action Link to detail page */}
-        <div className="pt-2">
+        {/* Action Links */}
+        <div className="pt-2 flex items-center gap-2">
           <Link
             to={`/project/${project.id}`}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-foreground/5 hover:bg-primary hover:text-primary-foreground rounded-lg transition-all text-sm font-medium group-hover:border-primary/30"
+            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-foreground/5 hover:bg-primary hover:text-primary-foreground rounded-lg transition-all text-sm font-medium group-hover:border-primary/30"
           >
             <span>{t("projects.detail")}</span>
-            <ExternalLink className="w-4 h-4" />
           </Link>
+          {githubUrl && (
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 px-3 py-2.5 bg-foreground/5 hover:bg-primary hover:text-primary-foreground rounded-lg transition-all text-sm font-medium border border-transparent hover:border-primary/30"
+              title={t("projects.repo")}
+            >
+              <Github className="w-4 h-4" />
+            </a>
+          )}
         </div>
       </div>
     </motion.div>

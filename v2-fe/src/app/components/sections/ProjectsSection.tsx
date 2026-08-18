@@ -1,10 +1,11 @@
 import { FC, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "motion/react";
-import { Loader2, AlertCircle } from "lucide-react";
+import { Loader2, AlertCircle, Github, ExternalLink } from "lucide-react";
 import { ProjectCard } from "./ProjectCard";
 import { fetchProjects } from "../../services/api";
 import { ApiProject, CategorizedProjects } from "../../types";
+import { SOCIAL_LINKS } from "../../constants";
 
 export const ProjectsSection: FC = () => {
   const { t } = useTranslation();
@@ -150,11 +151,33 @@ export const ProjectsSection: FC = () => {
 
         {/* Projects Grid */}
         {!loading && !error && (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProjects.map((project, index) => (
-              <ProjectCard key={`${project.categoryName}-${project.id}`} project={project} index={index} />
-            ))}
-          </div>
+          <>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredProjects.map((project, index) => (
+                <ProjectCard key={`${project.categoryName}-${project.id}`} project={project} index={index} />
+              ))}
+            </div>
+
+            {/* More Projects Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="mt-12 text-center"
+            >
+              <a
+                href={SOCIAL_LINKS.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-8 py-3.5 bg-card hover:bg-primary hover:text-primary-foreground border border-border hover:border-primary/40 rounded-xl transition-all font-medium text-base shadow-sm hover:shadow-lg hover:shadow-primary/10 group"
+              >
+                <Github className="w-5 h-5 transition-transform group-hover:scale-110" />
+                <span>{t("projects.moreProjects")}</span>
+                <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary-foreground transition-colors" />
+              </a>
+            </motion.div>
+          </>
         )}
       </div>
     </section>

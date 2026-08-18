@@ -25,15 +25,15 @@ class LoadAll(APIView):
         webs = Project.objects.filter(category="w").reverse()
         webs_objects = []
         for i in webs:
-            webs_objects.append({'title': i.name, 'url': i.icon.url, 'purpose': i.purpose, 'id':i.id, 'title_en':i.name_en, 'purpose_en':i.purpose_en})
+            webs_objects.append({'title': i.name, 'url': i.icon.url, 'purpose': i.purpose, 'id':i.id, 'title_en':i.name_en, 'purpose_en':i.purpose_en, 'repository': i.repository})
         apps = Project.objects.filter(category="a").reverse()
         app_objects = []
         for i in apps:
-            app_objects.append({'title': i.name, 'url': i.icon.url, 'purpose': i.purpose, 'id':i.id, 'title_en':i.name_en, 'purpose_en':i.purpose_en})
+            app_objects.append({'title': i.name, 'url': i.icon.url, 'purpose': i.purpose, 'id':i.id, 'title_en':i.name_en, 'purpose_en':i.purpose_en, 'repository': i.repository})
         others = Project.objects.all().exclude(category="w").exclude(category="a").reverse()
         others_objects = []
         for i in others:
-            others_objects.append({'title': i.name, 'url': i.icon.url, 'purpose': i.purpose, 'id':i.id, 'title_en':i.name_en, 'purpose_en':i.purpose_en})
+            others_objects.append({'title': i.name, 'url': i.icon.url, 'purpose': i.purpose, 'id':i.id, 'title_en':i.name_en, 'purpose_en':i.purpose_en, 'repository': i.repository})
         return Response({'webs': webs_objects, 'apps': app_objects, 'others': others_objects},
                         status=status.HTTP_200_OK)
 

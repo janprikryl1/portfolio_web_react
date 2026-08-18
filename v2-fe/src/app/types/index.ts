@@ -8,6 +8,7 @@ export interface ApiProject {
   purpose: string;
   purpose_en: string;
   categoryName?: "webs" | "apps" | "others";
+  repository?: string;
 }
 
 export interface CategorizedProjects {
