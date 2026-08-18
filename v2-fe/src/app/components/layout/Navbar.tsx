@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "motion/react";
-import { Code2 } from "lucide-react";
 import { SOCIAL_LINKS } from "../../constants";
 import { ThemeToggle } from "../ui/ThemeToggle";
 import { LanguageToggle } from "../ui/LanguageToggle";
@@ -17,9 +16,6 @@ export const Navbar: FC = () => {
       className="relative z-10 px-6 py-6 lg:px-12 lg:py-8 flex justify-between items-center border-b border-border/50 backdrop-blur-sm bg-background/50"
     >
       <a href="/#" className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
-        <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
-          <Code2 className="w-4 h-4" />
-        </div>
         <span className="font-bold text-base tracking-tight text-foreground">Jan Přikryl</span>
       </a>
 
